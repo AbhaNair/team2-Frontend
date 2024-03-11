@@ -16,7 +16,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function SearchBox() {
+export default function SearchBox2() {
   const [query, setQuery] = useState("");
   const [selectedPerson, setSelectedPerson] = useState(null);
 
@@ -34,7 +34,7 @@ export default function SearchBox() {
       </Combobox.Label>
       <div className="relative mt-2">
         <Combobox.Input
-          className="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-xl sm:leading-6"
+          className="w-full rounded-md border-0 bg-[#212327] py-1 pl-3 pr-12 text-lg text-neutral-200 ring-1 ring-inset ring-neutral-600 focus:ring-2 focus:ring-inset focus:ring-emerald-600"
           onChange={(event) => setQuery(event.target.value)}
           displayValue={(person) => person?.name}
         />

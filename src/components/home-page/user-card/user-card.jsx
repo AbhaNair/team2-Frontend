@@ -1,6 +1,9 @@
 import { Details1 } from "./details1";
 import { Details2 } from "./details2";
 import { Heading } from "./headings";
+import { PhoneDet } from "./phone-det";
+import { EmailDet } from "./email-det";
+import { SlackDet } from "./slack-det";
 
 export function UserCard() {
   return (
@@ -28,9 +31,12 @@ export function UserCard() {
           <Heading title="Natasha Khaleira" />
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 ">
             <Details1 title="Role" content="Head of Growth" />
-            <Details1 title="Phone Number" content="+91 37465 38 494" />
-            <Details1 title="Email Address" content="natasha@gmail.com" />
-            <Details1 title="Slack" content="natasha@slack" />
+            <PhoneDet title="Phone Number" content="+918618939422" />
+            <EmailDet title="Email Address" content="nair.abha1@gmail.com" />
+            <SlackDet
+              title="Slack"
+              content="https://moneyview.slack.com/team/U06L8R5A962"
+            />
           </div>
         </div>
       </div>

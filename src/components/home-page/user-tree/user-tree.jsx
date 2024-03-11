@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 import axios from "axios";
 import { useCenteredTree } from "./helper";
