@@ -55,7 +55,8 @@ const renderForeignObjectNode = ({
                   fontSize: "24px",
                   lineHeight: "inherit",
                   padding: 0,
-                  backgroundColor: "#28292D",
+                  //backgroundColor: "#28292D",
+                  marginLeft: "113px",
                 }}
                 onClick={(event) =>
                   handleUpNodeClick(event, nodeDatum, toggleNode)
@@ -106,7 +107,8 @@ const renderForeignObjectNode = ({
                 fontSize: "24px",
                 lineHeight: "inherit",
                 padding: 0,
-                backgroundColor: "#28292D",
+                //backgroundColor: "#28292D",
+                marginLeft: "113px",
               }}
               onClick={(event) =>
                 handleDownNodeClick(event, nodeDatum, toggleNode)
@@ -128,12 +130,12 @@ export const UserTree = ({ id, managerid }) => {
   const [toggleUpBottun, settoggleUpBottun] = useState(true);
   const [managerIdForUpButton, setmanagerIdForUpButton] = useState(managerid);
   const [dimensions, translate, containerRef] = useCenteredTree();
-  const nodeSize = { x: 300, y: 275 };
+  const nodeSize = { x: 300, y: 320 };
   const foreignObjectProps = {
     width: nodeSize.x,
-    y: -125,
+    y: -100,
     height: nodeSize.y,
-    x: -150,
+    x: -120,
   };
 
   const handleDownNodeClick = async (e, nodeDatum, toggleNode) => {

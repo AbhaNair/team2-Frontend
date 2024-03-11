@@ -1,11 +1,11 @@
-// import Authentication from "./components/login-page/login-page";
-import { ProfilePage } from "./components/profile-page/profile-page";
+//import Authentication from "./components/login-page/login-page";
+import { HomePage } from "./components/home-page/home-page";
 
 function App() {
   return (
     <>
-      {/* login page- <Authentication /> */}
-      <ProfilePage />
+      {/* <Authentication /> */}
+      <HomePage />
     </>
   );
 }

@@ -2,7 +2,7 @@ import SearchBox from "./search-box/search-box";
 import { UserCard } from "./user-card/user-card";
 import { UserTree } from "./user-tree/user-tree";
 
-export function ProfilePage() {
+export function HomePage() {
   return (
     <div className="bg-black flex flex-col  lg:flex-row gap-20 p-28">
       <div
