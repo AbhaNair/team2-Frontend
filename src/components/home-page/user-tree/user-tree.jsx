@@ -7,7 +7,7 @@ const containerStyles = {
   maxWidth: "1000px",
   height: "100vh",
   marginBottom: "20px",
-  background: "rgba(131, 137, 150,0.3)",
+  background: "#212327",
   borderRadius: "30px",
   overflow: "hidden",
 };
@@ -55,7 +55,7 @@ const renderForeignObjectNode = ({
                   fontSize: "24px",
                   lineHeight: "inherit",
                   padding: 0,
-                  //backgroundColor: "#28292D",
+                  backgroundColor: "#212327",
                   marginLeft: "113px",
                 }}
                 onClick={(event) =>
@@ -90,7 +90,7 @@ const renderForeignObjectNode = ({
               />
             </div>
             <div style={nameStyle}>
-              {nodeDatum.name} {id === nodeDatum.attributes.id ? "(ME)" : ""}
+              {nodeDatum.name} {id === nodeDatum.attributes.id ? "*" : ""}
             </div>
             <div>Designation: {nodeDatum.attributes.designation}</div>
             <div>Level: {nodeDatum.attributes.level}</div>
@@ -107,7 +107,7 @@ const renderForeignObjectNode = ({
                 fontSize: "24px",
                 lineHeight: "inherit",
                 padding: 0,
-                //backgroundColor: "#28292D",
+                backgroundColor: "#212327",
                 marginLeft: "113px",
               }}
               onClick={(event) =>
