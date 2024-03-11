@@ -4,7 +4,7 @@ import { UserTree } from "./user-tree/user-tree";
 
 export function ProfilePage() {
   return (
-    <div className="bg-black flex gap-20 p-28">
+    <div className="bg-black flex flex-col  lg:flex-row gap-20 p-28">
       <div
         className="w-96 px-8 py-4 rounded-3xl"
         style={{ backgroundColor: "#212327" }}

@@ -1,4 +1,4 @@
-import { QuotesColumn } from "../quote-column/quote-column";
+import { QuotesColumn } from "./quote-column/quote-column";
 
 export default function Authentication() {
   return (
