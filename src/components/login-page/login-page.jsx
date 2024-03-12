@@ -1,6 +1,8 @@
 import { QuotesColumn } from "./quote-column/quote-column";
+import { useNavigate } from "react-router-dom";
 
 export default function Authentication() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex min-h-full flex-1 ">
@@ -60,6 +62,7 @@ export default function Authentication() {
                   <div>
                     <button
                       type="submit"
+                      onClick={() => navigate("../")}
                       className="flex w-full justify-center rounded-md bg-emerald-700 px-3 py-1.5 text-xl font-bold leading-6 text-white shadow-sm hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
                     >
                       Sign in

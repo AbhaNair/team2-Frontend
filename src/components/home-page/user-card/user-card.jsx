@@ -4,8 +4,23 @@ import { Heading } from "./headings";
 import { PhoneDet } from "./phone-det";
 import { EmailDet } from "./email-det";
 import { SlackDet } from "./slack-det";
+import ImgSwitch from "./img-switch";
+import { useEffect } from "react";
+import axios from "axios";
 
-export function UserCard() {
+export function UserCard({ id }) {
+  useEffect(() => {
+    const fetchData = async () => {
+      if (id !== undefined) {
+        const { data } = await axios.get(
+          `http://localhost:8080/getEmployeeDetails/${id}`
+        );
+        console.log(data);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div
       style={{
@@ -16,17 +31,17 @@ export function UserCard() {
       }}
       className="flex flex-col gap-5"
     >
-      <Heading title="Employee Details" />
+      <div className="flex justify-between">
+        <Heading title="Employee Details" />
+        <button
+          type="button"
+          className="text-white bg-[#313236] px-3 rounded-md text-lg"
+        >
+          Download info
+        </button>
+      </div>
       <div className="flex flex-col md:flex-row gap-4 items-center">
-        <img
-          src="/avatar.jpeg"
-          alt=""
-          style={{
-            borderRadius: "50%",
-            width: "140px",
-            height: "140px",
-          }}
-        />
+        <ImgSwitch />
         <div>
           <Heading title="Natasha Khaleira" />
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 ">

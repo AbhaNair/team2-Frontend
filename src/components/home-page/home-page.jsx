@@ -13,10 +13,10 @@ export function HomePage() {
         <SearchBox2 />
       </aside>
       <div className="flex lg:pl-[600px] flex-col gap-20  align-center  p-12 lg:p-20">
-        <UserCard />
+        <UserCard id="1" />
         <div>
-          <UserTree id="2" managerid="1" />
-        </div>
+          <UserTree id={2} managerid={1} />
+        </div> 
       </div>
     </div>
   );

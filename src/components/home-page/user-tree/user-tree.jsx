@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 import axios from "axios";
+import "../../../index.css"
 import { useCenteredTree } from "./helper";
 
 const containerStyles = {
@@ -29,6 +30,8 @@ const nameStyle = {
   fontSize: "16px",
 };
 
+
+
 const renderForeignObjectNode = ({
   nodeDatum,
   toggleNode,
@@ -43,7 +46,7 @@ const renderForeignObjectNode = ({
     <g>
       <foreignObject {...foreignObjectProps}>
         {console.log("managerId in forienObject: " + managerIdForUpButton)}
-        {nodeDatum.attributes.managerId.length !== 0 &&
+        {nodeDatum.attributes.managerId !== 0 &&
           nodeDatum.attributes.id === managerIdForUpButton &&
           toggleUpBottun && (
             <div style={{ textAlign: "center", marginTop: 1 }}>
@@ -90,14 +93,14 @@ const renderForeignObjectNode = ({
               />
             </div>
             <div style={nameStyle}>
-              {nodeDatum.name} {id === nodeDatum.attributes.id ? "*" : ""}
+              {nodeDatum.name} {id === nodeDatum.attributes.id ? "(ME)" : ""}
             </div>
             <div>Designation: {nodeDatum.attributes.designation}</div>
             <div>Level: {nodeDatum.attributes.level}</div>
             <div>Id: {nodeDatum.attributes.id}</div>
           </div>
         </button>
-        {nodeDatum.attributes.reportees.length !== 0 && (
+        {nodeDatum.attributes.reportees !== 0 && (
           <div style={{ textAlign: "center", marginTop: 1 }}>
             <button
               style={{
@@ -143,7 +146,7 @@ export const UserTree = ({ id, managerid }) => {
       const { id } = nodeDatum.attributes;
       if (id !== undefined) {
         const reportees = await axios.get(
-          `http://localhost:8888/getAllReporteesById/${id}`
+          `http://localhost:8080/getAllReporteesById/${id}`
         );
         let reporteesList = reportees.data;
         for (let i = 0; i < reporteesList.length; i++) {
@@ -155,7 +158,7 @@ export const UserTree = ({ id, managerid }) => {
               designation: element?.designation,
               level: element?.level,
               id: element?.employeeId,
-              reportees: element?.reportees,
+              reportees: element?.numberOfReportees,
               managerId: element?.managerId,
             },
             children: [],
@@ -174,11 +177,11 @@ export const UserTree = ({ id, managerid }) => {
       const { id } = nodeDatum.attributes;
       if (id !== undefined) {
         const { data } = await axios.get(
-          `http://localhost:8888/findById/${id}`
+          `http://localhost:8080/getEmployeeDetails/${id}`
         );
         const managerId = data.managerId;
         const managerData = await axios.get(
-          `http://localhost:8888/findById/${managerId}`
+          `http://localhost:8080/getEmployeeDetails/${managerId}`
         );
         console.log("manager node detail start :");
         const node = {
@@ -187,7 +190,7 @@ export const UserTree = ({ id, managerid }) => {
             designation: managerData.data?.designation,
             level: managerData.data?.level,
             id: managerData.data?.employeeId,
-            reportees: managerData.data?.reportees,
+            reportees: managerData.data?.numberOfReportees,
             managerId: managerData.data?.managerId,
           },
           children: [],
@@ -208,10 +211,10 @@ export const UserTree = ({ id, managerid }) => {
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
-        `http://localhost:8888/findById/${managerid}`
+        `http://localhost:8080/getEmployeeDetails/${managerid}`
       );
       const reportees = await axios.get(
-        `http://localhost:8888/getAllReporteesById/${managerid}`
+        `http://localhost:8080/getAllReporteesById/${managerid}`
       );
       let reporteesList = reportees.data;
       const children = [];
@@ -224,7 +227,7 @@ export const UserTree = ({ id, managerid }) => {
             designation: element.designation,
             level: element.level,
             id: element.employeeId,
-            reportees: element.reportees,
+            reportees: element.numberOfReportees,
             managerId: element.managerId,
           },
           children: [],
@@ -237,7 +240,7 @@ export const UserTree = ({ id, managerid }) => {
           designation: data.designation,
           level: data.level,
           id: data.employeeId,
-          reportees: data.reportees,
+          reportees: data.numberOfReportees,
           managerId: data.managerId,
         },
         children: children,
@@ -287,8 +290,19 @@ export const UserTree = ({ id, managerid }) => {
     return tree;
   }
 
+  const pathClassFunc = () => {
+    return 'custom-link';
+  };
+
   return (
     <div className="App">
+      <style>
+        {`
+        .custom-link {
+          stroke: white !important; /* Set the desired color */
+        }
+      `}
+      </style>
       <div id="treeWrapper" style={containerStyles} ref={containerRef}>
         {myTreeData && (
           <Tree
@@ -301,6 +315,7 @@ export const UserTree = ({ id, managerid }) => {
             nodeSize={nodeSize}
             centeringTransitionDuration={200}
             allowForeignObjects
+            pathClassFunc={pathClassFunc}
             renderCustomNodeElement={(rd3tProps) =>
               renderForeignObjectNode({
                 ...rd3tProps,
